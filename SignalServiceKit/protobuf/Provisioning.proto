@@ -1,0 +1,42 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+// iOS - since we use a modern proto-compiler, we must specify
+// the legacy proto format.
+syntax = "proto2";
+
+package ProvisioningProtos;
+
+option java_package = "org.whispersystems.signalservice.internal.push";
+option java_outer_classname = "ProvisioningProtos";
+
+message ProvisioningUuid {
+    // @required
+    optional string uuid = 1;
+}
+
+message ProvisionEnvelope {
+  // @required
+  optional bytes publicKey = 1;
+  // @required
+  optional bytes body      = 2; // Encrypted ProvisionMessage
+}
+
+message ProvisionMessage {
+  // @required
+  optional bytes  identityKeyPublic   = 1;
+  // @required
+  optional bytes  identityKeyPrivate  = 2;
+  optional string number              = 3;
+  optional string uuid                = 8;
+  // @required
+  optional string provisioningCode    = 4;
+  optional string userAgent           = 5;
+  // @required
+  optional bytes  profileKey          = 6;
+  optional bool   readReceipts        = 7;
+  optional uint32 provisioningVersion = 9;
+}
